@@ -1,27 +1,31 @@
 pipeline {
     agent any
     tools {
-        maven "MAVEN3.9.9"
         jdk "JDK17"
-    }
+        maven "MAVEN3.9"
+
     
+    }
+
     environment {
-        SNAP_REPO = 'vprofile-snapshot'
+
+        SNAP_REPO = 'snapshot'
 		NEXUS_USER = 'admin'
 		NEXUS_PASS = 'admin123'
 		RELEASE_REPO = 'vprofile-release'
 		CENTRAL_REPO = 'vpro-maven-central'
-		NEXUSIP = '172.31.43.144'
+		NEXUSIP = '172.31.41.83'
 		NEXUSPORT = '8081'
-		NEXUS_GRP_REPO = 'vpro-maven-group'
-        NEXUS_LOGIN = 'nexuslogin'
+		NEXUS_GRP_REPO = 'vpro-group'
+        NEXUS_LOGIN = 'nexuslogin
     }
 
     stages {
-        stage('Build'){
+        stage('BUILD') {
             steps {
                 sh 'mvn -s settings.xml -DskipTests install'
             }
         }
     }
+
 }
